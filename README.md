@@ -16,12 +16,11 @@ Comicly is a generative AI tool that transforms a simple product description int
 
 ## 🖼️ Sample Output
 
-Comic generated for "Sneakers":
-![Sneaker Comic](media/sneakers.jpg)
-
 Comic generated for "Deodorant":
 ![Deo Comic](media/deo.jpg)
 
+Comic generated for "Sneakers":
+![Sneaker Comic](media/sneakers.jpg)
 
 
 ---
@@ -43,5 +42,5 @@ Make sure you have a CUDA-compatible GPU environment. Then, run only the backend
 
 ```bash
 cell 1-!pip install -q google-adk==1.4.2 diffusers transformers accelerate huggingface_hub google-generativeai pillow
-cell 2- put rest of the code in 1 cell to execute
-final comic downloaded
+cell 2- cell 2- put code of backend.py to execute and enter gemini api key in line after imports
+final comic will be downloaded automatically
