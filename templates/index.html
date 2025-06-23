@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Comicly – Comic Ad Generator</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-yellow-50 min-h-screen flex items-center justify-center font-sans">
+
+  <div class="bg-white shadow-xl rounded-2xl p-8 w-full max-w-md border border-yellow-400">
+    <h1 class="text-3xl font-bold text-center mb-6 text-yellow-700">🎨 Comicly</h1>
+    <p class="text-center text-gray-600 mb-6">Generate comic-style ads in seconds using AI!</p>
+
+    <form id="comicForm" class="space-y-4">
+      <div>
+        <label class="block text-gray-700 font-semibold">📦 Product Name</label>
+        <input type="text" id="product" required class="w-full mt-1 px-4 py-2 border rounded-lg">
+      </div>
+      <div>
+        <label class="block text-gray-700 font-semibold">🎯 Target Audience</label>
+        <input type="text" id="audience" class="w-full mt-1 px-4 py-2 border rounded-lg">
+      </div>
+      <div>
+        <label class="block text-gray-700 font-semibold">🧩 Number of Panels</label>
+        <select id="numPanels" required class="w-full mt-1 px-4 py-2 border rounded-lg">
+          <option value="4">4</option>
+          <option value="6">6</option>
+          <option value="8">8</option>
+        </select>
+      </div>
+      <button type="submit" class="w-full bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded-lg">
+        🚀 Generate Comic
+      </button>
+    </form>
+
+    <div id="status" class="mt-4 text-center text-sm text-gray-600 hidden">Generating your comic...</div>
+    <div id="result" class="mt-4 text-center hidden"></div>
+  </div>
+
+  <script>
+    document.getElementById("comicForm").addEventListener("submit", async function (e) {
+      e.preventDefault();
+      const status = document.getElementById("status");
+      const result = document.getElementById("result");
+      result.classList.add("hidden");
+      status.classList.remove("hidden");
+      status.textContent = "⏳ Generating your comic...";
+
+      const product = document.getElementById("product").value;
+      const audience = document.getElementById("audience").value;
+      const numPanels = document.getElementById("numPanels").value;
+
+      const response = await fetch("/generate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ product, audience, num_panels: parseInt(numPanels) })
+      });
+
+      const data = await response.json();
+      if (data.success) {
+        status.classList.add("hidden");
+        result.innerHTML = `<p class="text-green-700 font-semibold">✅ Comic Generated!</p><a href="${data.comic_url}" target="_blank"><img src="${data.comic_url}" class="mt-2 rounded-lg border shadow"></a>`;
+        result.classList.remove("hidden");
+      } else {
+        status.textContent = "❌ Failed to generate comic.";
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+flask
+torch
+diffusers
+Pillow
+google-generativeai
+google-adk==1.4.2 
+transformers 
+accelerate
+huggingface_hub 
