@@ -16,12 +16,12 @@ Comicly is a generative AI tool that transforms a simple product description int
 
 ## 🖼️ Sample Output
 
-Comic generated for "Deodorant":
-![Deo Comic](media/deo.jpg)
 
 Comic generated for "Sneakers":
 ![Sneaker Comic](media/sneakers.jpg)
 
+Comic generated for "Deodorant":
+![Deo Comic](media/deo.jpg)
 
 ---
 
