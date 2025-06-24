@@ -38,7 +38,7 @@ Comic generated for "Deodorant":
 
 ## 🔧 Installation
 
-Make sure you have a CUDA-compatible GPU environment. Then, run only the backend.py in google colab for fast execution:
+Code requires a CUDA-compatible GPU environment but since its not there in all computers u can run only the backend.py in google colab for fastest execution with t4 gpu:
 
 ```bash
 cell 1-!pip install -q google-adk==1.4.2 diffusers transformers accelerate huggingface_hub google-generativeai pillow
